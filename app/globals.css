@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-lato-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,5 +22,53 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Dodajemo našu animaciju i klasu u Tailwind utilities */
+@layer utilities {
+  .animate-gradient-bg {
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+}
+
+/* Keyframes za pomeranje pozadine */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Malo šira traka kako bismo napravili prostor za border */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Traka i dalje ostaje nevidljiva */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Vidljivija bela boja kao na slici */
+
+  /* KLJUČNI TRIK: Dodajemo providan okvir da bi scrollbar "pobegao" od ivice prozora */
+  border: 1px solid transparent;
+  background-clip: padding-box; /* Ograničava pozadinu da ne prelazi preko providnog bordera */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 1); /* Čisto bela kada pređeš mišem */
 }
