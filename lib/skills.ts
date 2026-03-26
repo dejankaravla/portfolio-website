@@ -1,5 +1,4 @@
 export const skills = [
-  "All",
   "React",
   "Next",
   "Node",
