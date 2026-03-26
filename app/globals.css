@@ -70,5 +70,5 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 1); /* Čisto bela kada pređeš mišem */
+  background-color: rgba(255, 255, 255, 0.4); /* Čisto bela kada pređeš mišem */
 }

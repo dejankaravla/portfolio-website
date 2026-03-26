@@ -100,6 +100,12 @@ export const projects = [
     image: "/projects/telegram-wallet.png",
     description: `Panther Wallet is a high-performance, non-custodial digital asset management solution specifically engineered for the Sui blockchain and integrated directly into the Telegram ecosystem. Operating as an all-in-one "Mini App," it allows users to create, import, and manage multiple wallet addresses without ever leaving their chat interface. The technical architecture prioritizes top-tier security by ensuring that all private keys are encrypted and stored locally on the user's device, giving them complete sovereignty over their funds. By bridging the gap between social messaging and decentralized finance, Panther Wallet enables seamless peer-to-peer transactions, allowing users to send and receive tokens as easily as sending a text message through an integrated smart address book that syncs with Telegram contacts. The platform functions as a comprehensive gateway to the Sui network, featuring a built-in decentralized application (dApp) store and an array of in-app financial utilities. Users can execute complex operations such as swapping tokens, staking for rewards, and exploring a curated selection of Mini Apps all within the unified wallet interface. To drive user engagement and growth, the project incorporates a sophisticated rewards engine where users earn points for community participation, referrals, and active wallet usage, which can be redeemed for various ecosystem benefits. Supported by a robust real-time notification system for transactions and activities, Panther Wallet provides a fast, intuitive, and mobile-centric experience that simplifies the complexities of blockchain interaction for a global audience.`,
     liveUrl: "https://pantherwallet.io",
+    gallery: [
+      "/projects/panther-wallet-2.png",
+      "/projects/panther-wallet-3.webp",
+      "/projects/panther-wallet-4.png",
+      "/projects/panther-wallet-5.png",
+    ],
   },
   {
     id: 30,
