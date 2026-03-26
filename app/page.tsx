@@ -11,7 +11,7 @@ import EducationsSection from "@/components/Education";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center p-6 lg:p-10 font-sans text-white">
+    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center p-6  font-sans text-white">
       <video
         autoPlay
         loop
