@@ -3,7 +3,8 @@ import React from "react";
 
 const WindowControls: React.FC = () => {
   return (
-    <div className="flex items-center space-x-3 px-4 pt-4 pb-8 group w-fit">
+    // Uklonjeni su pt-4, pb-8 i px-4. Roditelj će sada kontrolisati centriranje!
+    <div className="flex items-center space-x-3 group w-fit">
       {/* Red / Close - Vraćeno na normalnu debljinu (strokeWidth="1.2") */}
       <div className="w-4.5 h-4.5 rounded-full bg-[#FF5F56] border border-black/10 flex items-center justify-center">
         <svg

@@ -1,4 +1,4 @@
-"use client"; // Obavezno za interaktivnost (klikove i stanje)
+"use client";
 
 import React, { useState } from "react";
 import {
@@ -13,7 +13,6 @@ import {
   Flag,
 } from "lucide-react";
 
-// Tipovi za linkove: dodajemo href i opcionu onClick funkciju
 interface NavLinkProps {
   icon: React.ReactNode;
   label: string;
@@ -32,31 +31,29 @@ const NavLink: React.FC<NavLinkProps> = ({
   <a
     href={href}
     onClick={(e) => {
-      // Ako postoji onClick (kategorije), zaustavi defaultni skok i uradi glatko skrolovanje
       if (onClick) {
         e.preventDefault();
         onClick(href);
       }
     }}
-    // Ako su u pitanju eksterni linkovi (npr. GitHub), neka otvara u novom tabu
     target={!onClick && href.startsWith("http") ? "_blank" : "_self"}
     rel={!onClick && href.startsWith("http") ? "noopener noreferrer" : ""}
-    className={`flex items-center space-x-3.5 px-3 py-2.5 rounded-xl transition-all duration-200 ${
+    // Na mobilnom centriramo ikonicu i sklanjamo margine/padding tekst
+    className={`flex items-center justify-center md:justify-start md:space-x-3.5 p-2.5 md:px-3 md:py-2.5 rounded-xl transition-colors ${
       active
         ? "bg-white/10 text-white shadow-sm"
         : "text-gray-400 hover:bg-white/5 hover:text-white"
     }`}
   >
-    {icon}
-    <span className="text-sm font-medium">{label}</span>
+    <div className="flex items-center justify-center shrink-0">{icon}</div>
+    {/* Labela je sakrivena na mobilnom (hidden md:block) */}
+    <span className="hidden md:block text-sm font-medium">{label}</span>
   </a>
 );
 
 const Sidebar: React.FC = () => {
-  // Stanje za praćenje aktivnog taba
   const [activeLink, setActiveLink] = useState("#profile");
 
-  // Funkcija za glatko skrolovanje
   const handleScroll = (href: string) => {
     setActiveLink(href);
     const element = document.querySelector(href);
@@ -70,15 +67,16 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-72 flex flex-col justify-between py-3 overflow-hidden">
-      {/* Top Section: Search + Nav */}
-      <div className="px-4 flex flex-col flex-grow">
+    // Uklonio sam w-72 odavde jer sada page.tsx kontroliše širinu kontejnera
+    <aside className="w-full flex flex-col justify-between py-3 overflow-y-auto custom-scrollbar h-full">
+      <div className="px-2 md:px-4 flex flex-col flex-grow">
         {/* Categories */}
-        <div className="mb-10">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-5 px-3">
+        <div className="mb-6 md:mb-4 border-b border-white/5 md:border-none pb-4 md:pb-0">
+          {/* Naslov kategorije sakriven na mobilnom */}
+          <h3 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
             Categories
           </h3>
-          <nav className="space-y-1.5">
+          <nav className="space-y-1 md:space-y-1.5 flex flex-col items-center md:items-stretch">
             <NavLink
               icon={<Flag size={20} />}
               label="Profile"
@@ -118,12 +116,11 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* Social Links */}
-        <div>
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-5 px-3">
+        <div className="mt-2 md:mt-0">
+          <h3 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
             Social Link
           </h3>
-          <nav className="space-y-1.5">
-            {/* Za ove linkove ne šaljemo onClick kako bi radili kao normalni linkovi */}
+          <nav className="space-y-1 md:space-y-1.5 flex flex-col items-center md:items-stretch">
             <NavLink
               icon={<Linkedin size={20} />}
               label="LinkedIn"

@@ -1,8 +1,6 @@
 // components/SkillsSection.tsx
 import React from "react";
-import Image from "next/image";
 
-// Tvoja lista veština
 const skills = [
   { name: "HTML", icon: "/icons/html5.svg", color: "#E34F26" },
   { name: "CSS", icon: "/icons/css.svg", color: "#663399" },
@@ -11,7 +9,7 @@ const skills = [
   { name: "TypeScript", icon: "/icons/typescript.svg", color: "#3178C6" },
   { name: "ReactJS", icon: "/icons/react.svg", color: "#61DAFB" },
   { name: "NextJS", icon: "/icons/nextjs.svg", color: "#000000" },
-  { name: "React Native", icon: "/icons/react.svg", color: "#61DAFB" }, // Možeš koristiti isti React logo
+  { name: "React Native", icon: "/icons/react.svg", color: "#61DAFB" },
   { name: "NodeJS", icon: "/icons/nodejs.svg", color: "#5FA04E" },
   { name: "NestJS", icon: "/icons/nestjs.svg", color: "#E0234E" },
   { name: "MongoDB", icon: "/icons/mongodb.svg", color: "#47A248" },
@@ -20,34 +18,33 @@ const skills = [
   { name: "Git", icon: "/icons/git.svg", color: "#F05032" },
   { name: "Cursor", icon: "/icons/cursor.svg", color: "#000000" },
   { name: "Claude Code", icon: "/icons/claude.svg", color: "#D97757" },
-  { name: "Google Gemeni", icon: "/icons/googlegemini.svg", color: "#8E75B2" }, // Možeš naći neku "brain" ili "sparkles" SVG ikonicu
+  { name: "Google Gemeni", icon: "/icons/googlegemini.svg", color: "#8E75B2" },
 ];
 
 const SkillsSection: React.FC = () => {
   return (
-    <div className="mt-12 w-full">
+    <div className="mt-8 md:mt-12 w-full">
       <h3 className="text-[1rem] font-bold text-white mb-6 tracking-wide">
         My Skills
       </h3>
 
-      <div className="flex flex-wrap gap-4 lg:gap-5 justify-center">
+      {/* Smanjen gap na gap-3 za mobilne, vraćen na gap-4/5 za desktop */}
+      <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-5 justify-center">
         {skills.map((skill, index) => (
-          // Dodao sam 'group' klasu ovde da bismo lakše kontrolisali hover efekte unutrašnjih elemenata
           <div
             key={index}
-            className="flex flex-col items-center justify-center w-[100px] h-[100px] bg-black/20 backdrop-blur-md border border-white/5 rounded-3xl shadow-lg group"
+            // Kartice su malo manje na telefonu (85x85) i zaobljene sa zaobljenjem 2xl, a na kompu 100x100
+            className="flex flex-col items-center justify-center w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] bg-black/20 backdrop-blur-md border border-white/5 rounded-2xl sm:rounded-3xl shadow-lg group"
           >
-            {/* CSS Maska umesto <Image /> komponente */}
+            {/* Ikonice su malo manje na telefonu (w-8 h-8) */}
             <div
-              className="w-10 h-10 mb-3"
+              className="w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3"
               style={{
                 backgroundColor: skill.color,
-                // Webkit prefiksi su obavezni zbog podrške u različitim pretraživačima (Chrome, Safari)
                 WebkitMaskImage: `url(${skill.icon})`,
                 WebkitMaskSize: "contain",
                 WebkitMaskRepeat: "no-repeat",
                 WebkitMaskPosition: "center",
-                // Standardne maske
                 maskImage: `url(${skill.icon})`,
                 maskSize: "contain",
                 maskRepeat: "no-repeat",
@@ -55,7 +52,8 @@ const SkillsSection: React.FC = () => {
               }}
             />
 
-            <span className="text-[12px] font-bold text-white text-center px-1 group-hover:text-white transition-colors">
+            {/* Tekst je trunčicu manji na mobilnom da ne prelama čudno */}
+            <span className="text-[10px] sm:text-[12px] font-bold text-white text-center px-1 group-hover:text-white transition-colors">
               {skill.name}
             </span>
           </div>
