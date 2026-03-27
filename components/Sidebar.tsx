@@ -29,6 +29,7 @@ const NavLink: React.FC<NavLinkProps> = ({
   onClick,
 }) => (
   <a
+    aria-label={label}
     href={href}
     onClick={(e) => {
       if (onClick) {
