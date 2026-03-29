@@ -40,18 +40,21 @@ export default function Home() {
           <TopBar />
 
           {/* Sadržaj koji se skroluje */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth">
+          <div
+            id="main-scroll"
+            className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth"
+          >
             <div className="p-4 md:p-8 lg:p-12 space-y-12 md:space-y-20">
-              <section id="profile">
+              <section id="profile" className="pt-2">
                 <HeroCard />
               </section>
-              <section id="skills">
+              <section id="skills" className="mt-2">
                 <SkillsSection />
               </section>
-              <section id="experience">
+              <section id="experience" className="mt-2">
                 <JobsSection />
               </section>
-              <section id="projects">
+              <section id="projects" className="mt-2">
                 <ProjectsSection />
               </section>
               <section id="education">
