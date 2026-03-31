@@ -21,13 +21,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dejan Karavla | Front-End Developer",
+  title: "Dejan Karavla | Full Stack Engineer",
   description:
-    "Portfolio of Dejan Karavla, an Innovative Front-End Developer specializing in React, Next.js, and modern web applications.",
+    "Portfolio of Dejan Karavla, a Full Stack Engineer specializing in React, Next.js, Node.js, NestJS, and building scalable modern web and mobile applications.",
   keywords: [
+    "Full Stack Engineer",
+    "Full Stack Developer",
     "Front-End Developer",
     "React",
     "Next.js",
+    "Node.js",
+    "NestJS",
     "TypeScript",
     "Portfolio",
     "Dejan Karavla",

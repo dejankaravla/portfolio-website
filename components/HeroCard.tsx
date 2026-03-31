@@ -35,7 +35,7 @@ const HeroCard: React.FC = () => {
       <div className="z-10 relative flex-shrink-0 w-[200px] h-[200px] md:w-[340px] md:h-[340px]">
         <Image
           src="/front-end-developer.png"
-          alt="Front End Developer Illustration"
+          alt="Developer Illustration"
           fill // Koristimo fill umesto fiksnih width i height za lakšu responzivnost
           className="object-contain drop-shadow-xl"
           priority
