@@ -6,10 +6,10 @@ const jobs = [
     id: 1,
     company: "Digital Mind",
     logo: "/digital_mind_doo_logo.png",
-    date: "Jan 2021 - Present",
+    date: "Jan 2021 - Present", // Vraćeno na tvoj originalni datum
     duration: "5 yrs 2 mos",
     description:
-      "Independent Front-End Developer specializing in building responsive, high-performance web applications and crafting intuitive user interfaces.",
+      "Full Stack Engineer responsible for architecting and developing scalable web, mobile, and decentralized applications, handling everything from intuitive frontend interfaces to robust backend services.",
     bullets: [
       "Developing 3AS, a decentralized platform for the Agentic Internet, utilizing Next.js, TypeScript, and MongoDB to build scalable solutions.",
       "Spearheaded the development of the Shapa mobile app, focusing on user engagement and performance optimization using React Native, NestJS, and PostgreSQL.",
@@ -19,16 +19,16 @@ const jobs = [
   },
   {
     id: 2,
-    company: "Freelancing",
+    company: "Freelance Front-End Developer", // Dodato zvanje da zvuči profesionalnije
     logo: "/code-logo.png",
     date: "Jan 2020 - Sep 2021",
     duration: "1 yr 8 mo",
     description:
-      "Development of Communication Networks and Industrial Smart Solutions.",
+      "Independent Front-End Developer focused on creating custom, responsive websites and digital solutions for small businesses.",
     bullets: [
-      "Translated complex designs into pixel-perfect, interactive web and mobile interfaces, ensuring cross-browser compatibility and responsiveness.",
-      "Developed dynamic and engaging user experiences using modern frontend technologies including JavaScript, ReactJS, and SCSS.",
-      "Collaborated closely with clients to deliver visually appealing, accessible, and user-centric frontend solutions tailored to their specific business needs.",
+      "Developed visually appealing and interactive websites from scratch, helping local businesses establish a strong online presence.",
+      "Translated client ideas and wireframes into fully responsive web interfaces using HTML, SCSS, JavaScript, and ReactJS.",
+      "Managed end-to-end frontend development, communicating directly with clients to ensure the final product met their specific business needs.",
     ],
   },
 ];
@@ -72,7 +72,7 @@ const JobsSection: React.FC = () => {
               </div>
 
               {/* Kratak opis */}
-              <p className="text-[13.5px] md:text-[14px] text-white/90 mb-4 md:mb-5 font-medium leading-relaxed">
+              <p className="text-[13.5px] md:text-[14px] text-white/90 mb-4 md:mb-5 font-bold leading-relaxed">
                 {job.description}
               </p>
 
