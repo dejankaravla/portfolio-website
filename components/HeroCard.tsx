@@ -13,12 +13,12 @@ const HeroCard: React.FC = () => {
         </h1>
 
         <p className="text-sm lg:text-[15px] text-white/95 mb-8 leading-relaxed font-medium">
-          Innovative Front-End Developer with expertise in building responsive,
-          high-performance web applications using React. Passionate about
-          merging user-centric design with cutting-edge technology to solve
-          complex problems. Proven ability to lead cross-functional teams,
-          mentor junior developers, and deliver scalable solutions aligned with
-          Agile workflows.
+          Innovative Full Stack Developer with over 5 years of experience
+          building scalable web, mobile, and decentralized solutions.
+          Specialized in React, Next.js, and TypeScript, with a strong track
+          record of delivering high-performance AI-powered platforms. Proven
+          ability to adapt to fast-evolving tech landscapes and create
+          exceptional user experiences.
         </p>
 
         <a
