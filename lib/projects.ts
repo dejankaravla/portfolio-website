@@ -1,25 +1,92 @@
-export const projects = [
+// Ilustracija za projekte bez screenshota (API, dashboard, ekstenzija), crta je ProjectCover
+export type ProjectCover =
+  | {
+      kind: "api";
+      accent: string;
+      method: string;
+      path: string;
+      latency: string;
+      response: Record<string, string | number | boolean>;
+    }
+  | {
+      kind: "dashboard";
+      accent: string;
+      title: string;
+      nav: string[];
+      stats: [string, string][];
+    }
+  | {
+      kind: "extension";
+      accent: string;
+      site: string;
+      name: string;
+      action: string;
+      rows: [string, string][];
+    };
+
+export type Project = {
+  id: number;
+  title: string;
+  tags: string[];
+  image?: string;
+  // Isečena verzija samo za karticu (npr. samo ekran telefona)
+  thumbnail?: string;
+  // Kako kartica prikazuje sliku: u prozoru (podrazumevano), kao telefon ili preko cele kartice
+  frame?: "window" | "phone" | "photo";
+  cover?: ProjectCover;
+  description?: string;
+  liveUrl?: string;
+  githubUrl?: string | null;
+  gallery?: string[];
+};
+
+export const projects: Project[] = [
+  {
+    id: 19,
+    title: "Cognios",
+    tags: ["Next", "Node", "MongoDB", "AI SDK"],
+    image: "/projects/cognios.jpg",
+    description: `Cognios is an AI tutoring platform built around a simple belief: the best knowledge should be passed on through people, not flattened into generic AI answers. Real experts turn what they know into adaptive AI tutors, and learners move through structured lessons, ask a live tutor grounded in the expert's own material, and advance only by passing mastery checks. Every milestone produces a shareable record of progress and completed courses end with a certificate, so learners leave with proof of what they understand rather than a list of videos they watched. The catalog spans topics such as data analytics, statistics, SQL, and startup pitching, and the first lesson of every tutor is free.
+
+On the creator side, Cognios turns raw material into a teachable course. Experts upload documents, video, or pasted text, and the platform drafts lessons and mastery checks that the creator reviews before Cognios reviews them again ahead of publishing. Scope guardrails keep each tutor focused on its subject, so answers stay grounded in the creator's material. The platform runs on Next.js, TypeScript, and MongoDB, with the Vercel AI SDK orchestrating the models behind live tutoring. Monetization combines tiered learner subscriptions through Stripe with a creator revenue share that pays experts 75% of eligible revenue every month, turning expertise into a sustainable product.`,
+    liveUrl: "https://cognios.io",
+    gallery: [
+      "/projects/cognios-1.jpg",
+      "/projects/cognios-2.jpg",
+      "/projects/cognios-3.jpg",
+    ],
+  },
   {
     id: 1,
     title: "Solsea",
     tags: ["React", "Scss", "Bootstrap"],
-    image: "/projects/solsea.png",
+    image: "/projects/solsea.webp",
     description:
       "Solsea represents a landmark development in the blockchain ecosystem as the first open NFT marketplace launched on the Solana network. The platform was designed to overcome the high transaction costs and slow processing speeds traditionally associated with Ethereum-based marketplaces by leveraging Solana’s high-performance infrastructure. It introduced a suite of innovative features to the NFT space, most notably being the first platform to embed licensing and copyright information directly into the NFT minting process. This allowed creators to specify legal usage rights, providing a layer of security and clarity for both artists and collectors. The technical architecture focused on providing a seamless, real-time user experience where minting, listing, and purchasing digital assets occurred almost instantaneously with negligible gas fees. Beyond transaction efficiency, the platform integrated a sophisticated rarity index system that calculated and displayed the scarcity of specific traits within a collection, empowering users to make informed investment decisions. As a high-traffic decentralized application, it required robust integration with Solana-based wallets like Phantom and Solflare, ensuring secure on-chain interactions and a responsive interface capable of handling vast amounts of metadata and high-resolution digital media across all device types.",
     liveUrl: "https://solsea.io",
     githubUrl: null,
     gallery: [
-      "/projects/solsea-1.png",
+      "/projects/solsea-1.webp",
       "/projects/solsea-2.png",
       "/projects/solsea-3.png",
-      "/projects/solsea-4.png",
+      "/projects/solsea-4.webp",
     ],
   },
   {
     id: 2,
     title: "Solsea Dashboard",
     tags: ["React", "UI/UX", "Bootstrap"],
-    image: "/projects/dashboard-default.png",
+    cover: {
+      kind: "dashboard",
+      accent: "#22d3ee",
+      title: "Solsea Admin",
+      nav: ["Overview", "Collections", "Creators", "Reports"],
+      stats: [
+        ["Collections", "12.4k"],
+        ["In review", "86"],
+        ["Flagged", "14"],
+      ],
+    },
     description:
       "The Solsea Administrative Dashboard was developed as a specialized internal management interface designed to maintain the integrity and security of the marketplace. This professional-grade UI provided administrators with a centralized control center to oversee the entire platform ecosystem, facilitating the streamlined verification process for creators and digital collections to ensure authenticity. The interface featured advanced moderation modules for flagging suspicious activity, enforcing platform policies through user banning, and managing content restrictions through a highly responsive and intuitive layout. By focusing on real-time data visualization and efficient workflows, the dashboard enabled the staff to handle high-volume moderation tasks, resolve copyright disputes, and monitor marketplace health through a secure, permission-based frontend environment.",
   },
@@ -27,7 +94,20 @@ export const projects = [
     id: 3,
     title: "All.Art API",
     tags: ["Node", "MongoDB"],
-    image: "/projects/api-default.png",
+    cover: {
+      kind: "api",
+      accent: "#c084fc",
+      method: "GET",
+      path: "/v1/collections/:id/stats",
+      latency: "42 ms",
+      response: {
+        floor: 2.4,
+        volume24h: 1830,
+        items: 5000,
+        holders: 1412,
+        verified: true,
+      },
+    },
     description:
       "The All-Art API serves as the central architectural backbone for the entire All-Art ecosystem, providing a high-performance data layer that powers multiple front-facing platforms including the Solsea marketplace and the administrative dashboard. Designed as a highly scalable and resilient service, the API handles the complex orchestration of on-chain data from the Solana blockchain and translates it into optimized, queryable formats for various client applications. It acts as the primary gateway for essential marketplace functions such as fetching real-time NFT metadata, tracking collection statistics, and managing user-specific data like transaction histories and portfolio valuations. By implementing a robust and secure communication layer, the API ensures seamless interoperability across the ecosystem, supporting high-concurrency requests while maintaining data integrity for a global user base and diverse set of digital assets.",
     liveUrl: "https://all.art",
@@ -36,7 +116,9 @@ export const projects = [
     id: 4,
     title: "Shapa App",
     tags: ["React Native", "Firebase", "SCSS"],
-    image: "/projects/shapa-app.png",
+    image: "/projects/shapa-app.webp",
+    thumbnail: "/projects/shapa-app-phone.webp",
+    frame: "phone",
     description: `The Shapa mobile application is a specialized digital ecosystem designed to centralize and simplify pet care for dog owners. It serves as a comprehensive "digital health record" and management tool, allowing users to store critical information such as a pet's age, weight, and complete medical history in one easily accessible location. The application’s core functionality revolves around a synchronized task and calendar system that automates daily responsibilities, from medication schedules and veterinary appointments to routine walks, ensuring that essential care is never overlooked. A key innovation of the platform is the "Pack" feature, which enables multiple users to share caregiving duties and stay updated on a pet’s status in real-time, making it an ideal solution for families or shared households. Beyond individual pet management, Shapa fosters a safety-conscious community through integrated crowdsourced alerts and emergency features.
     The application includes a real-time hazard map where users can report and view warnings about poisoned bait or other dangers in their local area, directly enhancing the safety of daily walks. In critical situations, the platform provides an SOS emergency broadcast system to alert the local community if a pet goes missing, significantly accelerating recovery efforts. Complemented by an informative blog section featuring expert advice and pet-related news, the Shapa app acts as both a utility tool and a community hub, dedicated to improving the quality of life for dogs and providing peace of mind for their owners.`,
     liveUrl: "https://shapa.app",
@@ -54,20 +136,42 @@ export const projects = [
     image: "/projects/shapa-web.png",
     description: `The Shapa marketing website serves as the primary digital gateway and promotional hub for the Shapa mobile application, specifically designed to drive user acquisition and communicate the platform's value proposition. As a high-conversion landing page, the site focuses on articulating the app’s core mission of centralizing canine care through an intuitive and visually engaging interface. It effectively translates complex app functionalities—such as the digital medical record, the "Pack" shared care system, and real-time community safety alerts—into digestible marketing narratives that resonate with pet owners. By prioritizing a clean, modern aesthetic and clear calls to action, the website guides visitors toward downloading the application while establishing brand trust and authority within the pet tech space. Beyond its role as a conversion tool, the website acts as a comprehensive resource center featuring an integrated blog and information portal dedicated to pet health and community safety. This content-driven approach enhances the site’s search engine visibility and provides ongoing value to users through expert advice and interesting pet-related topics. The technical implementation emphasizes a mobile-first responsive design, ensuring a seamless transition for users moving from web discovery to app installation across all devices. By serving as the central point for community-reported hazards and SOS alerts, the web presence reinforces the app's real-world utility, positioning Shapa as an essential companion for every modern dog owner.`,
     liveUrl: "https://shapa.app",
-    gallery: ["/projects/shapa-web-1.png"],
+    gallery: ["/projects/shapa-web-1.webp"],
   },
   {
     id: 6,
     title: "Shapa API",
     tags: ["Nest", "Firebase", "PostgreSQL"],
-    image: "/projects/api-default.png",
+    cover: {
+      kind: "api",
+      accent: "#fb7185",
+      method: "POST",
+      path: "/v1/alerts",
+      latency: "61 ms",
+      response: {
+        type: "poison_bait",
+        radius_m: 500,
+        notified: 238,
+        status: "broadcast",
+      },
+    },
     description: `The Shapa API serves as the critical communication layer and central data engine powering the entire Shapa pet-care ecosystem. Designed to handle high-concurrency requests from both the mobile application and the web platform, the API orchestrates the complex synchronization of real-time data across various user roles and devices. It manages the secure storage and retrieval of sensitive pet medical records, user profiles, and the hierarchical structures required for the "Pack" feature, ensuring that updates made by one caregiver are instantly reflected across all shared accounts. By implementing robust data validation and efficient database querying, the API maintains the performance levels necessary for a smooth user experience, even when processing large volumes of daily task logs and calendar events. A standout capability of the Shapa API is its integration of location-based services and real-time community notifications. It facilitates the crowdsourced hazard reporting system, processing geographic coordinates to trigger instant alerts for users within the vicinity of reported dangers like poisoned bait. Additionally, the API manages the emergency SOS broadcast logic, coordinating the rapid distribution of missing pet alerts to the wider community based on proximity and timing. To support the platform’s content strategy, the API also delivers dynamic blog data and educational resources, ensuring a unified and secure flow of information across the marketing website and the mobile interface.`,
   },
   {
     id: 7,
     title: "Shapa Dashboard",
     tags: ["React"],
-    image: "/projects/dashboard-default.png",
+    cover: {
+      kind: "dashboard",
+      accent: "#3b82f6",
+      title: "Shapa Admin",
+      nav: ["Overview", "Users", "Alerts", "Blog"],
+      stats: [
+        ["Active users", "8.2k"],
+        ["Alerts today", "34"],
+        ["Open SOS", "3"],
+      ],
+    },
     description: `The Shapa Administrative Dashboard was developed as a specialized internal management tool designed to oversee the Shapa pet-care ecosystem and ensure the safety of its community. This centralized interface provides administrators with a powerful suite of moderation features, including the ability to verify user accounts, flag suspicious activity, and enforce platform guidelines through strategic user blocking. By consolidating these governance tools into a single, responsive frontend, the dashboard enables the team to maintain high standards of content quality and community trust, which is particularly critical for the real-time hazard reporting and SOS alert systems. Beyond moderation, the dashboard serves as a comprehensive analytics hub, transforming raw application data into actionable business intelligence. It features dynamic data visualization components that track key performance indicators, such as user growth, daily active engagement, and geographic hotspots for community alerts. These insights allow the management team to monitor the platform's health and make informed decisions regarding future feature development and regional marketing strategies. Designed with a focus on administrative efficiency, the dashboard provides a secure, permission-based environment that streamlines complex backend operations into an intuitive, high-performance web interface.`,
   },
   {
@@ -75,6 +179,7 @@ export const projects = [
     title: "Palace of Science: Create an Avatar",
     tags: ["React", "Electron", "SCSS"],
     image: "/projects/vise-od-igre-2.webp",
+    frame: "photo",
     description: `"Create an Avatar" is an interactive installation developed specifically for the Palace of Science in Belgrade, designed to bridge the physical visitor experience with digital creativity and gaming culture. Situated on a custom physical totem, the application allows users to engage with a streamlined visual interface to select one of ten diverse, pre-defined game worlds. Once a world is chosen, the totem captures a high-resolution photograph of the user using an integrated camera system. This photo, along with the specific artistic style parameters of the selected game, is then transmitted to the OpenAI API (utilizing advanced generative models like DALL-E) to generate a unique, photorealistic or stylized avatar. The resulting image preserves the user's distinct facial features while seamlessly blending them into the costuming, lighting, and aesthetic universe of the chosen video game. The technical implementation of this project focused on creating a frictionless, rapid user flow that manages complex API interactions in the background without degrading the interactive experience. The frontend, running on the totem hardware, provides an intuitive touch interface and robust camera control, while the backend infrastructure securely handles data transmission, authentication with the OpenAI service, and the dynamic delivery of the generated digital asset. By transforming a simple portrait into a personalized piece of gaming art, the "Create an Avatar" project offers visitors a memorable, high-tech souvenir that encourages social sharing and demonstrates the practical, creative capabilities of modern generative artificial intelligence in a public educational setting.`,
     gallery: [
       "/projects/vise-od-igre-4.jpg",
@@ -89,15 +194,18 @@ export const projects = [
     title: "Palace of Science: Create Your Own Game",
     tags: ["React", "Electron", "SCSS"],
     image: "/projects/vise-od-igre-2.webp",
+    frame: "photo",
     description: `"Create Your Own Game" is an innovative interactive installation at the Palace of Science that leverages generative artificial intelligence to turn visitors into game designers. Through a dedicated interactive terminal, users are invited to describe their ideal video game concept in plain language. To refine the vision, the application conducts a brief, intelligent interview, asking the user a series of targeted questions regarding gameplay mechanics, setting, and objectives. This input is then processed via the OpenAI API, which acts as a real-time logic and content engine to architect a functional game based on the user's specific parameters. Once the generation process is complete, the terminal instantly compiles and launches the custom game, allowing the visitor to play their own creation on the spot. The technical challenge of this project involved creating a seamless bridge between natural language processing and playable game logic, ensuring that the AI-generated instructions translate into a coherent and entertaining user experience. By lowering the barrier to entry for game development, the project provides a hands-on demonstration of how large language models can be used for rapid prototyping and creative problem-solving in a public educational environment.`,
-    gallery: ["/projects/vise-od-igre-3.png", "/projects/vise-od-igre-1.webp"],
+    gallery: ["/projects/vise-od-igre-3.webp", "/projects/vise-od-igre-1.webp"],
     liveUrl: "https://palatanauke.rs/dogadjaji/vise-od-igre",
   },
   {
     id: 10,
     title: "Panther Wallet",
     tags: ["Next", "Tailwind", "Shadcn"],
-    image: "/projects/telegram-wallet.png",
+    image: "/projects/telegram-wallet.webp",
+    thumbnail: "/projects/telegram-wallet-phone.webp",
+    frame: "phone",
     description: `Panther Wallet is a high-performance, non-custodial digital asset management solution specifically engineered for the Sui blockchain and integrated directly into the Telegram ecosystem. Operating as an all-in-one "Mini App," it allows users to create, import, and manage multiple wallet addresses without ever leaving their chat interface. The technical architecture prioritizes top-tier security by ensuring that all private keys are encrypted and stored locally on the user's device, giving them complete sovereignty over their funds. By bridging the gap between social messaging and decentralized finance, Panther Wallet enables seamless peer-to-peer transactions, allowing users to send and receive tokens as easily as sending a text message through an integrated smart address book that syncs with Telegram contacts. The platform functions as a comprehensive gateway to the Sui network, featuring a built-in decentralized application (dApp) store and an array of in-app financial utilities. Users can execute complex operations such as swapping tokens, staking for rewards, and exploring a curated selection of Mini Apps all within the unified wallet interface. To drive user engagement and growth, the project incorporates a sophisticated rewards engine where users earn points for community participation, referrals, and active wallet usage, which can be redeemed for various ecosystem benefits. Supported by a robust real-time notification system for transactions and activities, Panther Wallet provides a fast, intuitive, and mobile-centric experience that simplifies the complexities of blockchain interaction for a global audience.`,
     liveUrl: "https://pantherwallet.io",
     gallery: [
@@ -111,18 +219,31 @@ export const projects = [
     id: 30,
     title: "Panther Wallet API",
     tags: ["Node", "MongoDB"],
-    image: "/projects/api-default.png",
+    cover: {
+      kind: "api",
+      accent: "#4da2ff",
+      method: "POST",
+      path: "/v1/swap/quote",
+      latency: "37 ms",
+      response: {
+        from: "SUI",
+        to: "USDC",
+        amount: 120,
+        out: 418.52,
+        route: "Cetus",
+      },
+    },
     description: `The Panther Wallet API serves as the high-performance infrastructure layer that powers the seamless integration between the Telegram interface and the Sui blockchain. This robust backend service acts as the primary orchestrator for complex financial operations, including real-time token swaps, staking protocols, and cross-platform asset synchronization. By providing a secure and scalable communication bridge, the API enables the wallet to handle high-concurrency requests, such as fetching live market data, processing transaction histories, and managing user-specific metadata across multiple wallet addresses. It is engineered to maintain low-latency responses, ensuring that the mobile-first user experience within the Telegram Mini App remains fluid and responsive during high-volume trading periods. A core component of the Panther Wallet API is its sophisticated rewards and gamification engine, which tracks user activities, community participation, and referral metrics to calculate and distribute ecosystem points in real-time. The API also powers the integrated "App Store" logic, managing the discovery and secure interaction with third-party Mini Apps within the Sui network. Furthermore, it facilitates the smart address book functionality and the push notification system, ensuring that users receive instantaneous updates for incoming transactions or earned rewards. By centralizing these diverse services into a unified API architecture, the project provides a reliable and secure backbone for the entire Panther ecosystem, bridging the gap between social messaging and decentralized finance.`,
   },
   {
     id: 11,
     title: "RWA - Virtus Winery",
     tags: ["Next", "Tailwind", "Material ui"],
-    image: "/projects/rwa-virtus.png",
+    image: "/projects/rwa-virtus.webp",
     liveUrl: "https://klub.vinarijavirtus.rs/",
     description: `The Virtus Winery RWA (Real World Asset) platform is a pioneering blockchain-based solution that digitizes elite wine collecting, specifically featuring the prestigious Credo 2013 vintage. By leveraging the Solana blockchain, the platform transforms high-end wine bottles into digital tokens, acting as digital commodity vouchers that guarantee authenticity and ownership. This innovative approach allows collectors to secure rare archival wines that are not available through traditional retail channels, providing a transparent and secure method to build a digital wine cellar. The system is designed to hedge against inflation by allowing users to purchase tokens at current prices, effectively locking in the value of the physical asset while it continues to age in professional winery conditions. The technical ecosystem simplifies the entry into digital assets by offering a streamlined registration process where users can either create a new integrated digital wallet or connect an existing Solana wallet. The platform manages the entire lifecycle of the wine token, from the initial offering and secure storage of digital property rights to the final redemption process. Users have the flexibility to hold their tokens as a long-term investment or trigger a "burn" mechanism to exchange the digital token for the physical bottle, which is then securely delivered to their address. By combining a comprehensive "White Paper" for risk assessment with a user-friendly interface, the Virtus Winery project sets a regional benchmark for the intersection of traditional luxury viticulture and modern decentralized finance.`,
     gallery: [
-      "/projects/rwa-virtus-1.png",
+      "/projects/rwa-virtus-1.webp",
       "/projects/rwa-virtus-2.png",
       "/projects/rwa-virtus-3.png",
     ],
@@ -131,7 +252,7 @@ export const projects = [
     id: 12,
     title: "3AS - Website",
     tags: ["Next", "Tailwind", "Shadcn"],
-    image: "/projects/3as-web.png",
+    image: "/projects/3as-web.webp",
     description: `The 3AS marketing website serves as the primary digital gateway and authoritative information hub for the "3AS: The Internet of AI Agents" protocol. It is designed to articulate a complex paradigm shift in the AI landscape, moving away from closed, monolithic platforms toward an open, decentralized "Agent-As-A-Service" (AaaS) architecture. The website functions as a strategic communication tool that outlines the 3AS vision, where autonomous AI services can independently call, pay, and collaborate with one another on the decentralized web. By presenting a clear and professional UI, the site educates visitors on the three core actors within the ecosystem: Users who command agents, Agents that orchestrate complex workflows, and Tools that deliver modular, specialized functionalities. From a technical and marketing perspective, the website effectively highlights the protocol's ten core principles, emphasizing decentralized identities, cryptographic security, and autonomous micro-payments. It serves to attract developers and early adopters to the "3AS Revolution" by showcasing how AI agents can function as independent internet endpoints with standardized interfaces. With a focus on high-impact messaging and modern design, the site guides users through the concept of composable AI teams, moving from traditional app logins to a future where users assemble autonomous agent workforces. The platform ensures a seamless experience across devices, acting as the central entry point for those looking to build on or interact with the 3AS protocol.`,
     liveUrl: "https://3as.io/",
   },
@@ -195,7 +316,18 @@ export const projects = [
     id: 18,
     title: "3AS - Extension",
     tags: ["Next", "Scss"],
-    image: "/projects/extension-default.png",
+    cover: {
+      kind: "extension",
+      accent: "#38bdf8",
+      site: "forge.3as.io",
+      name: "3AS",
+      action: "Signature request",
+      rows: [
+        ["Agent", "ImageGen"],
+        ["Tool", "Image Wizard"],
+        ["Amount", "0.15 USDC"],
+      ],
+    },
     description: `The 3AS Browser Extension serves as the essential security and identity gateway for the entire 3AS ecosystem, functioning as a decentralized authentication and transaction signing tool. It acts as a secure bridge between the user’s cryptographic identity and the 3AS protocol, allowing individuals to verify their identity without relying on traditional centralized logins. By managing private keys locally and securely, the extension ensures that every action taken within the 3AS network—whether interacting with agents, hiring tools, or orchestrating complex workflows—is cryptographically signed and authorized by the rightful owner. This implementation provides a "Single Sign-On" experience for the decentralized web, where a user's unique identity is recognized across all 3AS-compatible platforms. Beyond identity verification, the extension facilitates the autonomous payment architecture of the 3AS protocol by acting as a transaction approval interface. When a user or an agent initiates a financial action, such as paying for a specialized tool or subscribing to an AI micro-company, the extension provides a transparent confirmation prompt to sign and broadcast the payment. It handles the end-to-end encryption required for secure agent-to-user communication, ensuring that sensitive data and commands remain private and tamper-proof. By centralizing these critical security functions into a lightweight, intuitive browser tool, the 3AS Extension provides the necessary trust layer for users to safely manage their autonomous AI workforces and financial assets across the decentralized internet.`,
   },
 ];

@@ -9,7 +9,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lato-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +34,12 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-bg {
+    animation: none;
+  }
+}
+
 /* Keyframes za pomeranje pozadine */
 @keyframes gradientShift {
   0% {
@@ -50,6 +55,7 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px; /* Malo šira traka kako bismo napravili prostor za border */
+  height: 5px; /* Ista debljina i za horizontalne trake (filteri, sličice u modalu) */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {

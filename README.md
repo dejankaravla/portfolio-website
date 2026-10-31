@@ -1,7 +1,7 @@
 🚀 Minimalist Developer Portfolio
 This is my personal portfolio website, designed with a focus on clean typography, minimalist aesthetics, and optimal performance. It serves as a digital representation of my journey, technical expertise, and the projects I’ve built.
 
-Live Demo: dejankaravla.vercel.app
+Live Demo: https://portfolio-website-ten-silk-24.vercel.app
 
 👨‍💻 About Me
 I am a Software Developer specializing in React and the modern web ecosystem. Based in Pančevo, Serbia, I focus on building scalable, user-centric applications with clean code and intuitive UI.

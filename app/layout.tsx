@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google";
+import { Lato } from "next/font/google";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const latoSans = Lato({
@@ -10,21 +11,33 @@ const latoSans = Lato({
   display: "swap",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const title = "Dejan Karavla | Full Stack Engineer & Co-founder of Cognios";
+const description =
+  "Portfolio of Dejan Karavla, Co-founder & CEO of Cognios and a Full Stack Engineer specializing in React, Next.js, Node.js, NestJS, and building scalable modern web, mobile, and AI-powered applications.";
 
 export const metadata: Metadata = {
-  title: "Dejan Karavla | Full Stack Engineer",
-  description:
-    "Portfolio of Dejan Karavla, a Full Stack Engineer specializing in React, Next.js, Node.js, NestJS, and building scalable modern web and mobile applications.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  // Slika za preview dolazi iz app/opengraph-image.jpg
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Dejan Karavla",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
   keywords: [
+    "Cognios",
+    "AI Tutors",
     "Full Stack Engineer",
     "Full Stack Developer",
     "Front-End Developer",
@@ -46,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${latoSans.variable} h-full antialiased`}
+      className={`${latoSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

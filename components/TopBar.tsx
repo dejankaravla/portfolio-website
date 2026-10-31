@@ -10,7 +10,7 @@ const TopBar: React.FC = () => {
       <div className="w-10 h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center shrink-0 relative">
         <Image
           src="/profile-image.jpg"
-          alt="Profile avatar"
+          alt="Dejan Karavla"
           width={100}
           height={100}
           // Vraćena tvoja originalna klasa h-[60px] (što je isto što i h-15)!

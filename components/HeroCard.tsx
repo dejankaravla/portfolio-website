@@ -13,8 +13,17 @@ const HeroCard: React.FC = () => {
         </h1>
 
         <p className="text-sm lg:text-[15px] text-white/95 mb-8 leading-relaxed font-medium">
-          Innovative Full Stack Developer with over 5 years of experience
-          building scalable web, mobile, and decentralized solutions.
+          Innovative Full Stack Developer and Co-founder & CEO of{" "}
+          <a
+            href="https://cognios.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
+          >
+            Cognios
+          </a>
+          , with over 6 years of experience building scalable web, mobile, and
+          decentralized solutions.
           Specialized in React, Next.js, and TypeScript, with a strong track
           record of delivering high-performance AI-powered platforms. Proven
           ability to adapt to fast-evolving tech landscapes and create
@@ -37,6 +46,7 @@ const HeroCard: React.FC = () => {
           src="/front-end-developer.png"
           alt="Developer Illustration"
           fill // Koristimo fill umesto fiksnih width i height za lakšu responzivnost
+          sizes="(min-width: 768px) 340px, 200px"
           className="object-contain drop-shadow-xl"
           priority
         />
