@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
   // Osigurač koji pamti da li skrolujemo klikom
   const isClickScrolling = useRef(false);
   // Pamti tajmer kako bismo detektovali kada se skrol ZAUSTAVIO
-  const scrollTimeout = useRef<any>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const scrollContainer = document.getElementById("main-scroll");
@@ -136,13 +136,13 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-full flex flex-col justify-between py-3 overflow-y-auto custom-scrollbar h-full">
+    <div className="w-full flex flex-col justify-between py-3 overflow-y-auto custom-scrollbar h-full">
       <div className="px-2 md:px-4 flex flex-col flex-grow">
         {/* Categories */}
         <div className="mb-6 md:mb-4 border-b border-white/5 md:border-none pb-4 md:pb-0">
-          <h3 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
+          <h2 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
             Categories
-          </h3>
+          </h2>
           <nav className="space-y-1 md:space-y-1.5 flex flex-col items-center md:items-stretch">
             <NavLink
               icon={<Flag size={20} />}
@@ -184,9 +184,9 @@ const Sidebar: React.FC = () => {
 
         {/* Social Links */}
         <div className="mt-2 md:mt-0">
-          <h3 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
-            Social Link
-          </h3>
+          <h2 className="hidden md:block text-md font-semibold text-gray-200 tracking-wider mb-2 px-3">
+            Social Links
+          </h2>
           <nav className="space-y-1 md:space-y-1.5 flex flex-col items-center md:items-stretch">
             <NavLink
               icon={<Linkedin size={20} />}
@@ -211,7 +211,7 @@ const Sidebar: React.FC = () => {
           </nav>
         </div>
       </div>
-    </aside>
+    </div>
   );
 };
 

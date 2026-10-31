@@ -9,14 +9,28 @@ import EducationsSection from "@/components/EducationsSection";
 
 export default function Home() {
   return (
-    <div className="relative w-full h-screen overflow-hidden flex items-center justify-center md:p-6 font-sans text-white">
+    // h-dvh umesto h-screen: na iOS Safariju 100vh ide ispod toolbara
+    <div className="relative w-full h-dvh overflow-hidden flex items-center justify-center md:p-6 font-sans text-white">
+      {/* Statična pozadina za "reduce motion", video je tada sakriven */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 bg-[url(/background-poster.jpg)] bg-cover bg-center"
+      />
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        aria-hidden="true"
+        poster="/background-poster.jpg"
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10 motion-reduce:hidden"
       >
+        {/* Telefon dobija 720p verziju (~1 MB), desktop 1080p (~2 MB) */}
+        <source
+          src="/background-mobile.mp4"
+          type="video/mp4"
+          media="(max-width: 767px)"
+        />
         <source src="/background.mp4" type="video/mp4" />
       </video>
 
@@ -42,7 +56,7 @@ export default function Home() {
           {/* Sadržaj koji se skroluje */}
           <div
             id="main-scroll"
-            className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth"
+            className="flex-1 overflow-y-auto custom-scrollbar scroll-smooth motion-reduce:scroll-auto"
           >
             <div className="p-4 md:p-8 lg:p-12 space-y-12 md:space-y-20">
               <section id="profile" className="pt-2">

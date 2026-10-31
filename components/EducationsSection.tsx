@@ -15,9 +15,9 @@ const EducationsSection: React.FC = () => {
   return (
     // mt-10 za mobilni, mt-16 za desktop
     <div className="mt-10 md:mt-16 w-full">
-      <h3 className="text-[1rem] font-bold text-white mb-4 md:mb-6 tracking-wide">
-        My Educations
-      </h3>
+      <h2 className="text-[1rem] font-bold text-white mb-4 md:mb-6 tracking-wide">
+        My Education
+      </h2>
 
       <div className="flex flex-col space-y-4 md:space-y-5">
         {educations.map((edu) => (
@@ -42,9 +42,9 @@ const EducationsSection: React.FC = () => {
 
               {/* Informacije o diplomi */}
               <div>
-                <h4 className="text-[15px] md:text-[16px] lg:text-[17px] font-bold text-white mb-1 leading-tight">
+                <h3 className="text-[15px] md:text-[16px] lg:text-[17px] font-bold text-white mb-1 leading-tight">
                   {edu.degree}
-                </h4>
+                </h3>
                 <p className="text-[12px] md:text-[13px] lg:text-[14px] text-white/70 font-medium">
                   {edu.institution}
                 </p>
